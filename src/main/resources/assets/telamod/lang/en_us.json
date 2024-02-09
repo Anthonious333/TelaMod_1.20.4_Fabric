@@ -1,0 +1,9 @@
+{
+  "block.telamod.telarail": "TelaRail",
+  "block.telamod.destarail": "DestaRail",
+  "item.telamod.tela_wrench": "Tela Wrench",
+
+  "telamod.telawrench.tooltip": "Right click on DestaRail, then crouch right click on TelaRail to set its Destination"
+
+
+}

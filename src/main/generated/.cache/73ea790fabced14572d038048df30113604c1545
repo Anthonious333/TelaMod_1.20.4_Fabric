@@ -1,0 +1,18 @@
+// 1.20.4	2024-02-09T00:02:52.187503	TelaMod/Model Definitions
+8a991f77994722e73a58bdfe538f5b2d0e245ba8 assets\telamod\models\block\telarail_on.json
+38a8df2a2f0aa59bd479c9f8ebb7f6345b4c47a9 assets\telamod\models\block\telarail_raised_ne.json
+67129a33a29ea7d56b8097404da74f12923d7221 assets\telamod\models\block\telarail_on_raised_ne.json
+a6a0d03fd0dba5fb97a14e11102319df71a969c6 assets\telamod\models\block\telarail.json
+258a13d27e56a38499f067cc187bf8abffbe5d7d assets\telamod\models\block\telarail_on_raised_sw.json
+c877ed98bb6de1f62ae08405a813559caaa4b4f6 assets\telamod\models\block\destarail_on_raised_sw.json
+99360dd548b42fa9f48fa338a91e8b9df2002ae4 assets\telamod\models\item\destarail.json
+7c180d5c0f582884c0866d8bc346b396fecdc3f7 assets\telamod\blockstates\destarail.json
+ab3a15e8f7d47a522109da220622ea26d6a5a91e assets\telamod\models\block\destarail_on_raised_ne.json
+1ce51dc43f7ffa157e9c08766c94aded5a7e5f82 assets\telamod\models\block\destarail_raised_ne.json
+b354841cda555d07a3185f5fc898dac9a5290479 assets\telamod\models\block\destarail_raised_sw.json
+a220a8b90e21d5bae4fc83241d3d96dea6838232 assets\telamod\blockstates\telarail.json
+427ba7c15bc03cfe3c8753f245eb2d4dbed9a837 assets\telamod\models\item\telarail.json
+c4278110e8871a4a0762ab650a60dd024e282955 assets\telamod\models\block\destarail_on.json
+345779cb2de5f2d1b819dce0a2a08a849587eece assets\telamod\models\block\destarail.json
+3811f5b40baef4bdd6ca9b1bd6417b872085b5b3 assets\telamod\models\item\tela_wrench.json
+a8392aa2b188277e738d7d5d93f4875b3d986f6a assets\telamod\models\block\telarail_raised_sw.json
