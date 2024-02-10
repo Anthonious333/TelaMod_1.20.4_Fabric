@@ -1,5 +1,6 @@
 package net.anthony.telamod.block.entity;
 
+import net.anthony.telamod.block.DestaRailBlock;
 import net.anthony.telamod.screen.TelaRailScreenHandler;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
@@ -13,14 +14,18 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3i;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -31,6 +36,7 @@ public class TelaRailBlockEntity extends BlockEntity implements ImplementedInven
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(1, ItemStack.EMPTY);
     private static final int SLOT = 0;
     private BlockPos destination;
+    protected final Random random = Random.create();
 
     public TelaRailBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.TELA_RAIL, pos, state);
@@ -84,11 +90,18 @@ public class TelaRailBlockEntity extends BlockEntity implements ImplementedInven
         if (world.isClient()) {
             return;
         }
+        if (destination != null && world.getBlockState(destination).getBlock().getClass() != DestaRailBlock.class) {
+            destination = null;
+            return;
+        }
+
         List<AbstractMinecartEntity> list = this.getCarts(world, pos, AbstractMinecartEntity.class, entity -> true);
-        if (world.isReceivingRedstonePower(pos) && !list.isEmpty() && !inventory.isEmpty() && destination != null && world.getBlockState(destination) != null) {
+        if (world.isReceivingRedstonePower(pos) && !list.isEmpty() && !inventory.get(SLOT).isEmpty() && destination != null) {
             this.removeStack(SLOT, 1);
             for (Entity e : list) {
+                world.playSound(e, pos, SoundEvents.ENTITY_PLAYER_TELEPORT, SoundCategory.PLAYERS, 1f, 1f);
                 e.requestTeleport(destination.getX(), destination.getY(), destination.getZ());
+                world.playSound(e, e.getBlockPos(), SoundEvents.ENTITY_PLAYER_TELEPORT, SoundCategory.PLAYERS, 1f, 1f);
             }
         }
     }
@@ -108,6 +121,11 @@ public class TelaRailBlockEntity extends BlockEntity implements ImplementedInven
     public void setDestination (BlockPos pos) {
         this.destination = pos;
     }
+
+    public BlockPos getDestination() {
+        return destination;
+    }
+
     private Box getCartDetectionBox(BlockPos pos) {
         double d = 0.2;
         return new Box((double)pos.getX() + 0.2, pos.getY(), (double)pos.getZ() + 0.2, (double)(pos.getX() + 1) - 0.2, (double)(pos.getY() + 1) - 0.2, (double)(pos.getZ() + 1) - 0.2);
