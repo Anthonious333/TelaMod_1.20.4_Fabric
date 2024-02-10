@@ -5,6 +5,8 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.DetectorRailBlock;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
@@ -25,6 +27,7 @@ public class DestaRailBlock extends DetectorRailBlock {
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (player.getEquippedStack(EquipmentSlot.MAINHAND).getItem().getClass() == TelaWrenchItem.class) {
             ((TelaWrenchItem) player.getEquippedStack(EquipmentSlot.MAINHAND).getItem()).setDestaPos(pos);
+            world.playSound(player, pos, SoundEvents.ITEM_LODESTONE_COMPASS_LOCK, SoundCategory.BLOCKS, 1f, 1f);
         }
         return ActionResult.SUCCESS;
     }
