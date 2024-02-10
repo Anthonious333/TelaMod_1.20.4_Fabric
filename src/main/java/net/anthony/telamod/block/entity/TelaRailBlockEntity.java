@@ -14,7 +14,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
@@ -61,8 +60,6 @@ public class TelaRailBlockEntity extends BlockEntity implements ImplementedInven
         }
     }
 
-
-
     @Override
     public void readNbt(NbtCompound nbt) {
         super.readNbt(nbt);
@@ -97,8 +94,8 @@ public class TelaRailBlockEntity extends BlockEntity implements ImplementedInven
 
         List<AbstractMinecartEntity> list = this.getCarts(world, pos, AbstractMinecartEntity.class, entity -> true);
         if (world.isReceivingRedstonePower(pos) && !list.isEmpty() && !inventory.get(SLOT).isEmpty() && destination != null) {
-            this.removeStack(SLOT, 1);
             for (Entity e : list) {
+                this.removeStack(SLOT, 1);
                 world.playSound(e, pos, SoundEvents.ENTITY_PLAYER_TELEPORT, SoundCategory.PLAYERS, 1f, 1f);
                 e.requestTeleport(destination.getX(), destination.getY(), destination.getZ());
                 world.playSound(e, e.getBlockPos(), SoundEvents.ENTITY_PLAYER_TELEPORT, SoundCategory.PLAYERS, 1f, 1f);
