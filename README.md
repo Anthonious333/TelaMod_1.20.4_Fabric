@@ -1,4 +1,4 @@
-First version 1.0.0 of the TelaMod by Anthonious333 for Minecraft ver 1.20.4
+Version 1.0.2 of the TelaMod by Anthonious333 for Minecraft ver 1.20.4
 
 Added: TelaRail, DestaRail, and Tela Wrench
 
